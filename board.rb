@@ -20,4 +20,23 @@ class Board
             raise "please enter a valid position"
         end
     end
+
+    def print
+        print @dimension.each{|k| k}
+    end
+
+    def win_row?(mark)
+    end
+    def win_col?(mark)
+    end
+    def win_diagonal?(mark)
+    end
+    def win?(mark)
+    end
+
+    def empty_positions?(mark)
+
+    end
+
+ 
 end
