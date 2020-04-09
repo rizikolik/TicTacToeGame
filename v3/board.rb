@@ -69,9 +69,13 @@ class Board
     end
 
  
-end
 
- 
+
+    def legal_positions
+        index=(0...@dimension.length).each.to_a
+        index.product(index).select{|ele| empty?(ele)}
+    end
+end
 
 
 
