@@ -59,7 +59,7 @@ class Board
     end
 
     def empty_positions?(mark)
-
+@dimension.any?{|pos| pos.any?("_")}
     end
 
  
