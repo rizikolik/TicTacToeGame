@@ -8,9 +8,9 @@ class Board
     end
 
     def valid?(pos)
-		
-        return true if @dimension[pos[0]][pos[1]]
-		false
+        pos.all? do |i|
+            0 <= i && i < @dimension.length
+        end
     end
     def empty?(pos)
         return true if @dimension[pos[0]][pos[1]]=="_"
@@ -31,11 +31,13 @@ class Board
     end
 
     def print
+        puts "   "
         @dimension.each do |k|
-            puts "   "
+            
             puts k.join(' ')
-            puts "     "
+            
         end
+        puts "     "
 
     end
 
@@ -69,7 +71,6 @@ class Board
  
 end
 
- board=Board.new
  
 
 

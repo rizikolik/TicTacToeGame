@@ -3,21 +3,14 @@ require_relative  "board"
 class Game
     attr_reader :current_player , :board
 
-    def initialize(player_1_mark, player_2_mark)
-        @player_1=Human.new(:X)
-        @player_2=Human.new(:O)
-        @player_1_mark=player_1_mark
-        @player_2_mark=player_2_mark
-        @current_player=@player_1
-        @board=Board.new
+    def initialize(*marks,n)
+        @players = marks.map { |mark| Human.new(mark) }
+        @current_player = @players.first
+        @board = Board.new(n)
     end
 
     def switch_turn
-        if @current_player==@player_1
-            @current_player=@player_2
-        else
-            @current_player=@player_1
-        end
+        @current_player = @players.rotate!.first
     end
 
     def play
@@ -44,6 +37,6 @@ class Game
     end
 end
 
-game=Game.new(:X,:O)
+game=Game.new(:X,:Y,:O,6)
 game.play
 
