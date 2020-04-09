@@ -32,7 +32,9 @@ class Board
 
     def print
         @dimension.each do |k|
+            puts "   "
             puts k.join(' ')
+            puts "     "
         end
 
     end
@@ -45,31 +47,30 @@ class Board
     end
     def win_diagonal?(mark)
 		
-		from_left=(0...@dimension.length).each do |k|
+		from_left=(0...@dimension.length).all? do |k|
 			@dimension[k][k]==mark
 		end
-		from_right=(0...@dimension.length).each do |k|
+		from_right=(0...@dimension.length).all? do |k|
 			
-		col =@dimension.length-1-i
+		col =@dimension.length-1-k
 			@dimension[k][col]==mark
 		end
 		from_right || from_left
     end
     def win?(mark)
+        win_row?(mark) || win_col?(mark) || win_diagonal?(mark)
     end
 
-    def empty_positions?(mark)
-@dimension.any?{|pos| pos.any?("_")}
+    def empty_positions?
+    index=(0...@dimension.length).each.to_a
+    index.product(index).any?{|ele| empty?(ele)}
     end
 
  
 end
 
-a=Board.new
- a.place_mark([1, 2], :x)
-a.place_mark([0, 0], :O)
-a.print
-
+ board=Board.new
+ 
 
 
 

@@ -11,7 +11,3 @@ def get_position
 end
     
 end
-
-hum=Human.new(:X)
-hum.get_position
-p hum
