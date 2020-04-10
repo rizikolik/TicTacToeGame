@@ -1,29 +1,32 @@
-require_relative "human"
-require_relative  "board"
+require_relative "./human"
+require_relative "./computer"
+require_relative  "./board"
 class Game
-    attr_reader :current_player , :board
+    
 
-    def initialize(*marks,n)
-        @players = marks.map { |mark| Human.new(mark) }
+    def initialize(n,marks)
+        @players = marks.map do |k,bolean|
+			bolean ? Computer.new(k) : Human.new(k)
+			end
         @current_player = @players.first
         @board = Board.new(n)
     end
-
     def switch_turn
         @current_player = @players.rotate!.first
     end
 
     def play
-
     while @board.empty_positions?
         @board.print
-        pos=@current_player.get_position
+		pos1=@board.legal_positions
+        pos=@current_player.get_position(pos1)
         mark=@current_player.mark
         @board.place_mark(pos,mark)
        if @board.win?(mark)
-        puts "Victory! #{current_player.mark.to_s}"
-        @board.print
-        return
+       puts 'Game Over'
+                puts @current_player.mark.to_s + ' HAS WON!'
+                return
+
        else
 
         switch_turn
@@ -37,6 +40,6 @@ class Game
     end
 end
 
-game=Game.new(:X,:Y,:O,6)
-game.play
+machine_civil_war = Game.new(10, h: true, u:false, e: true)
+machine_civil_war.play
 

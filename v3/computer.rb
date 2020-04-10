@@ -1,4 +1,4 @@
-require_relative "board"
+
 class Computer
     attr_reader :mark
 def initialize(mark)
@@ -6,7 +6,7 @@ def initialize(mark)
 end
 def get_position(legal_positions)
      pos =legal_positions.sample
-    raise 'sorry,the position was incorrect' if !pos
+           puts "Computer #{self.mark} chose position #{pos.to_s}"
     pos
 end
 

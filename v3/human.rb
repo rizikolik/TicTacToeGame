@@ -4,7 +4,7 @@ def initialize(mark)
     @mark=mark
 end
 def get_position(legal_positions)
-
+pos=nil
     until legal_positions.include?(pos)
     puts "Player #{mark.to_s} , enter two numbers represents a position for `row col`"
     pos = gets.chomp.split(' ').map(&:to_i)
@@ -16,6 +16,3 @@ end
     
 end
 
-hum=Human.new(:X)
-
-p hum
